@@ -1,10 +1,15 @@
 {
   "name": "insect-exposure-triage",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "领域事件基础校验",
+  "description": "虫害暴露分诊协同：多渠道事件归并、经审核规则分诊、幂等提醒与隐私阈值预警",
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "typecheck": "tsc --noEmit",
+    "build-samples": "node scripts/build-samples.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.0"
   }
 }

@@ -1,9 +1,33 @@
 {
-  "event_id": "092106-013-sample-001",
+  "event_id": "20261004-APP-7781",
   "event_type": "EXPOSURE_REPORTED",
   "aggregate_type": "exposure_case",
-  "aggregate_id": "insect_exposure_triage-001",
-  "occurred_at": "2026-09-20T15:00:00+08:00",
+  "aggregate_id": "20261004-APP-7781",
+  "occurred_at": "2026-10-04T19:02:00+08:00",
   "version": 1,
-  "summary": "登记虫害暴露分诊协同的首条领域记录"
+  "idempotency_key": "resident-app:msg-88123",
+  "summary": "居民App登记林带隐翅虫接触，暂无皮损",
+  "payload": {
+    "reporter": {
+      "channel": "resident_app",
+      "reporter_ref": "app-user-7742"
+    },
+    "link_tokens": ["XA-TRIAGE-20261004-0007"],
+    "patient": {
+      "patient_ref": "pid-62001",
+      "display_name": "乐乐",
+      "age_group": "child",
+      "baseline_risks": []
+    },
+    "contact": {
+      "occurred_at": "2026-10-04T18:20:00+08:00",
+      "location": {
+        "location_id": "L-XFLD-01",
+        "location_name": "幸福林带健身区",
+        "district": "新城区"
+      },
+      "suspected_agent": "隐翅虫"
+    },
+    "note": "孩子在健身器材附近拍落过一只橘黑相间小虫"
+  }
 }

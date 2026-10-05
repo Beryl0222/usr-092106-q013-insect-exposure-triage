@@ -1,0 +1,317 @@
+[
+  {
+    "event_id": "vetting-R-CONTACT-CLEAN-v1",
+    "event_type": "RULE_VETTED",
+    "aggregate_type": "triage_rule",
+    "aggregate_id": "R-CONTACT-CLEAN",
+    "occurred_at": "2026-09-01T09:00:00+08:00",
+    "version": 1,
+    "summary": "市疾控临床审核组 审核启用分诊规则 R-CONTACT-CLEAN v1",
+    "payload": {
+      "rule_id": "R-CONTACT-CLEAN",
+      "version": 1,
+      "vetted_by": "市疾控临床审核组",
+      "vetted_at": "2026-09-01T01:00:00.000Z"
+    }
+  },
+  {
+    "event_id": "vetting-R-HARMFUL-MEASURE-v1",
+    "event_type": "RULE_VETTED",
+    "aggregate_type": "triage_rule",
+    "aggregate_id": "R-HARMFUL-MEASURE",
+    "occurred_at": "2026-09-01T09:00:00+08:00",
+    "version": 1,
+    "summary": "市疾控临床审核组 审核启用分诊规则 R-HARMFUL-MEASURE v1",
+    "payload": {
+      "rule_id": "R-HARMFUL-MEASURE",
+      "version": 1,
+      "vetted_by": "市疾控临床审核组",
+      "vetted_at": "2026-09-01T01:00:00.001Z"
+    }
+  },
+  {
+    "event_id": "vetting-R-MILD-LOCAL-SIGN-v1",
+    "event_type": "RULE_VETTED",
+    "aggregate_type": "triage_rule",
+    "aggregate_id": "R-MILD-LOCAL-SIGN",
+    "occurred_at": "2026-09-01T09:00:00+08:00",
+    "version": 1,
+    "summary": "市疾控临床审核组 审核启用分诊规则 R-MILD-LOCAL-SIGN v1",
+    "payload": {
+      "rule_id": "R-MILD-LOCAL-SIGN",
+      "version": 1,
+      "vetted_by": "市疾控临床审核组",
+      "vetted_at": "2026-09-01T01:00:00.002Z"
+    }
+  },
+  {
+    "event_id": "vetting-R-WORSENING-TREND-v1",
+    "event_type": "RULE_VETTED",
+    "aggregate_type": "triage_rule",
+    "aggregate_id": "R-WORSENING-TREND",
+    "occurred_at": "2026-09-01T09:00:00+08:00",
+    "version": 1,
+    "summary": "市疾控临床审核组 审核启用分诊规则 R-WORSENING-TREND v1",
+    "payload": {
+      "rule_id": "R-WORSENING-TREND",
+      "version": 1,
+      "vetted_by": "市疾控临床审核组",
+      "vetted_at": "2026-09-01T01:00:00.003Z"
+    }
+  },
+  {
+    "event_id": "vetting-R-SEVERE-SIGN-v1",
+    "event_type": "RULE_VETTED",
+    "aggregate_type": "triage_rule",
+    "aggregate_id": "R-SEVERE-SIGN",
+    "occurred_at": "2026-09-01T09:00:00+08:00",
+    "version": 1,
+    "summary": "市疾控临床审核组 审核启用分诊规则 R-SEVERE-SIGN v1",
+    "payload": {
+      "rule_id": "R-SEVERE-SIGN",
+      "version": 1,
+      "vetted_by": "市疾控临床审核组",
+      "vetted_at": "2026-09-01T01:00:00.004Z"
+    }
+  },
+  {
+    "event_id": "vetting-R-SENSITIVE-SITE-v1",
+    "event_type": "RULE_VETTED",
+    "aggregate_type": "triage_rule",
+    "aggregate_id": "R-SENSITIVE-SITE",
+    "occurred_at": "2026-09-01T09:00:00+08:00",
+    "version": 1,
+    "summary": "市疾控临床审核组 审核启用分诊规则 R-SENSITIVE-SITE v1",
+    "payload": {
+      "rule_id": "R-SENSITIVE-SITE",
+      "version": 1,
+      "vetted_by": "市疾控临床审核组",
+      "vetted_at": "2026-09-01T01:00:00.005Z"
+    }
+  },
+  {
+    "event_id": "vetting-R-VULNERABLE-SYSTEMIC-v1",
+    "event_type": "RULE_VETTED",
+    "aggregate_type": "triage_rule",
+    "aggregate_id": "R-VULNERABLE-SYSTEMIC",
+    "occurred_at": "2026-09-01T09:00:00+08:00",
+    "version": 1,
+    "summary": "市疾控临床审核组 审核启用分诊规则 R-VULNERABLE-SYSTEMIC v1",
+    "payload": {
+      "rule_id": "R-VULNERABLE-SYSTEMIC",
+      "version": 1,
+      "vetted_by": "市疾控临床审核组",
+      "vetted_at": "2026-09-01T01:00:00.006Z"
+    }
+  },
+  {
+    "event_id": "20261004-APP-7781",
+    "event_type": "EXPOSURE_REPORTED",
+    "aggregate_type": "exposure_case",
+    "aggregate_id": "20261004-APP-7781",
+    "occurred_at": "2026-10-04T19:02:00+08:00",
+    "version": 1,
+    "idempotency_key": "resident-app:msg-88123",
+    "summary": "居民App登记林带隐翅虫接触，暂无皮损",
+    "payload": {
+      "reporter": {
+        "channel": "resident_app",
+        "reporter_ref": "app-user-7742"
+      },
+      "link_tokens": [
+        "XA-TRIAGE-20261004-0007"
+      ],
+      "patient": {
+        "patient_ref": "pid-62001",
+        "display_name": "乐乐",
+        "age_group": "child",
+        "baseline_risks": []
+      },
+      "contact": {
+        "occurred_at": "2026-10-04T18:20:00+08:00",
+        "location": {
+          "location_id": "L-XFLD-01",
+          "location_name": "幸福林带健身区",
+          "district": "新城区",
+          "address": "（临床可见，不进入公共预警）"
+        },
+        "suspected_agent": "隐翅虫"
+      },
+      "note": "孩子在健身器材附近拍落过一只橘黑相间小虫"
+    }
+  },
+  {
+    "event_id": "20261004-HOTLINE-3320",
+    "event_type": "OBSERVATION_ADDED",
+    "aggregate_type": "exposure_case",
+    "aggregate_id": "20261004-HOTLINE-3320",
+    "occurred_at": "2026-10-04T21:10:00+08:00",
+    "version": 1,
+    "idempotency_key": "hotline:call-55120",
+    "summary": "热线回访：已涂酒精，前臂小片红斑",
+    "payload": {
+      "link_tokens": [
+        "XA-TRIAGE-20261004-0007"
+      ],
+      "observed_at": "2026-10-04T21:00:00+08:00",
+      "findings": [
+        {
+          "code": "erythema",
+          "severity": "mild",
+          "area_cm2": 8
+        }
+      ],
+      "measures": [
+        {
+          "code": "alcohol_applied",
+          "at": "2026-10-04T20:30:00+08:00"
+        }
+      ],
+      "evolution": "stable",
+      "image": {
+        "image_ref": "obj://images/2026/10/04/55120-01",
+        "consent_scope": "clinical",
+        "granted_at": "2026-10-04T21:05:00+08:00"
+      },
+      "note": "家长咨询能否继续涂酒精"
+    }
+  },
+  {
+    "event_id": "20261005-APP-7782",
+    "event_type": "OBSERVATION_ADDED",
+    "aggregate_type": "exposure_case",
+    "aggregate_id": "20261005-APP-7782",
+    "occurred_at": "2026-10-05T09:48:00+08:00",
+    "version": 1,
+    "idempotency_key": "resident-app:msg-88130",
+    "summary": "离线补录：晨起出现水疱并向上臂扩展",
+    "payload": {
+      "case_id": "case-7a4e457978fb",
+      "observed_at": "2026-10-05T07:30:00+08:00",
+      "findings": [
+        {
+          "code": "blister",
+          "severity": "severe",
+          "observed_since": "2026-10-05T06:40:00+08:00"
+        },
+        {
+          "code": "rapid_spread",
+          "severity": "severe",
+          "spreading": true
+        }
+      ],
+      "evolution": "worsening"
+    }
+  },
+  {
+    "event_id": "20261005-ED-0091",
+    "event_type": "TREATMENT_RECORDED",
+    "aggregate_type": "exposure_case",
+    "aggregate_id": "case-7a4e457978fb",
+    "occurred_at": "2026-10-05T10:10:00+08:00",
+    "version": 1,
+    "idempotency_key": "ed:visit-20261005-0091",
+    "summary": "市儿童医院急诊收治",
+    "payload": {
+      "case_id": "case-7a4e457978fb",
+      "institution_id": "H-XACHILD",
+      "institution_name": "西安市儿童医院急诊",
+      "treated_at": "2026-10-05T10:05:00+08:00",
+      "disposition": "admitted",
+      "diagnosis_suspected": "隐翅虫皮炎（条索状水疱性皮炎）",
+      "actions": [
+        "创面清洁护理",
+        "收住皮肤科观察"
+      ],
+      "note": "嘱家长勿再使用酒精"
+    }
+  },
+  {
+    "event_id": "20261004-ED-0417",
+    "event_type": "EXPOSURE_REPORTED",
+    "aggregate_type": "exposure_case",
+    "aggregate_id": "20261004-ED-0417",
+    "occurred_at": "2026-10-04T23:40:00+08:00",
+    "version": 1,
+    "idempotency_key": "ed:visit-20261004-0417",
+    "summary": "另一家医院接诊同名患儿（不同人，独立病例）",
+    "payload": {
+      "reporter": {
+        "channel": "hospital",
+        "reporter_ref": "H-XAJT"
+      },
+      "patient": {
+        "patient_ref": "pid-62088",
+        "display_name": "乐乐",
+        "age_group": "child"
+      },
+      "contact": {
+        "occurred_at": "2026-10-04T17:10:00+08:00",
+        "location": {
+          "location_id": "L-HZM-02",
+          "location_name": "后宰门小学操场",
+          "district": "新城区"
+        },
+        "suspected_agent": "隐翅虫"
+      }
+    }
+  },
+  {
+    "event_id": "20261004-CDC-FWD-10",
+    "event_type": "EXPOSURE_REPORTED",
+    "aggregate_type": "exposure_case",
+    "aggregate_id": "20261004-CDC-FWD-10",
+    "occurred_at": "2026-10-04T20:10:00+08:00",
+    "version": 1,
+    "idempotency_key": "cdc-forward:20261004-10",
+    "summary": "社区上报林带附近暴露",
+    "payload": {
+      "reporter": {
+        "channel": "cdc_forward"
+      },
+      "patient": {
+        "patient_ref": "pid-62045",
+        "age_group": "adult"
+      },
+      "contact": {
+        "occurred_at": "2026-10-04T18:25:00+08:00",
+        "location": {
+          "location_id": "L-XFLD-01",
+          "location_name": "幸福林带健身区",
+          "district": "新城区",
+          "address": "（临床可见，不进入公共预警）"
+        },
+        "suspected_agent": "隐翅虫"
+      }
+    }
+  },
+  {
+    "event_id": "20261004-CDC-FWD-11",
+    "event_type": "EXPOSURE_REPORTED",
+    "aggregate_type": "exposure_case",
+    "aggregate_id": "20261004-CDC-FWD-11",
+    "occurred_at": "2026-10-04T20:11:00+08:00",
+    "version": 1,
+    "idempotency_key": "cdc-forward:20261004-11",
+    "summary": "社区上报林带附近暴露",
+    "payload": {
+      "reporter": {
+        "channel": "cdc_forward"
+      },
+      "patient": {
+        "patient_ref": "pid-62067",
+        "age_group": "adult"
+      },
+      "contact": {
+        "occurred_at": "2026-10-04T18:40:00+08:00",
+        "location": {
+          "location_id": "L-XFLD-01",
+          "location_name": "幸福林带健身区",
+          "district": "新城区",
+          "address": "（临床可见，不进入公共预警）"
+        },
+        "suspected_agent": "隐翅虫"
+      }
+    }
+  }
+]

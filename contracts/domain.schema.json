@@ -1,21 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xian-public-health.example/schemas/insect-exposure-triage/domain.schema.json",
   "title": "虫害暴露分诊协同领域事件",
+  "description": "事件一经接收，其标识、发生时间与版本不原地改写；业务更正产生后继记录。",
   "type": "object",
-  "required": [
-    "event_id",
-    "event_type",
-    "aggregate_type",
-    "aggregate_id",
-    "occurred_at",
-    "version",
-    "summary"
-  ],
+  "required": ["event_id", "event_type", "aggregate_type", "aggregate_id", "occurred_at", "version", "summary"],
   "properties": {
-    "event_id": {
-      "type": "string",
-      "minLength": 1
-    },
+    "event_id": { "type": "string", "minLength": 1 },
     "event_type": {
       "type": "string",
       "enum": [
@@ -23,34 +14,352 @@
         "OBSERVATION_ADDED",
         "GUIDANCE_ISSUED",
         "CASE_ESCALATED",
+        "TREATMENT_RECORDED",
+        "RULE_VETTED",
+        "LINKAGE_PROPOSED",
+        "LINKAGE_RESOLVED",
         "CLUSTER_ALERTED"
       ]
     },
     "aggregate_type": {
       "type": "string",
-      "enum": [
-        "exposure_case",
-        "symptom_observation",
-        "triage_rule",
-        "public_alert"
-      ]
+      "enum": ["exposure_case", "triage_rule", "exposure_linkage", "public_alert"]
     },
-    "aggregate_id": {
-      "type": "string",
-      "minLength": 1
+    "aggregate_id": { "type": "string", "minLength": 1 },
+    "occurred_at": { "type": "string", "format": "date-time" },
+    "version": { "type": "integer", "minimum": 1 },
+    "summary": { "type": "string", "minLength": 1 },
+    "idempotency_key": { "type": "string", "minLength": 1 },
+    "correction_of_event_id": { "type": "string", "minLength": 1 },
+    "payload": { "type": "object" }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "linkage_hints": {
+      "type": "object",
+      "properties": {
+        "case_id": { "type": "string", "minLength": 1 },
+        "link_tokens": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "patient_ref": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": true
     },
-    "occurred_at": {
-      "type": "string",
-      "format": "date-time"
+    "location": {
+      "type": "object",
+      "required": ["location_id", "location_name", "district"],
+      "properties": {
+        "location_id": { "type": "string", "minLength": 1 },
+        "location_name": { "type": "string", "minLength": 1 },
+        "district": { "type": "string", "minLength": 1 },
+        "address": { "type": "string" }
+      },
+      "additionalProperties": false
     },
-    "version": {
-      "type": "integer",
-      "minimum": 1
+    "image": {
+      "type": "object",
+      "required": ["image_ref", "consent_scope", "granted_at"],
+      "properties": {
+        "image_ref": { "type": "string", "minLength": 1 },
+        "consent_scope": { "type": "string", "enum": ["none", "clinical"] },
+        "granted_at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
     },
-    "summary": {
-      "type": "string",
-      "minLength": 1
+    "finding": {
+      "type": "object",
+      "required": ["code", "severity"],
+      "properties": {
+        "code": {
+          "type": "string",
+          "enum": [
+            "erythema",
+            "large_erythema",
+            "blister",
+            "pustule",
+            "erosion_oozing",
+            "rapid_spread",
+            "eye_involvement",
+            "face_genital_involvement",
+            "systemic_symptom"
+          ]
+        },
+        "severity": { "type": "string", "enum": ["mild", "moderate", "severe"] },
+        "area_cm2": { "type": "number", "exclusiveMinimum": 0 },
+        "spreading": { "type": "boolean" },
+        "observed_since": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "measure": {
+      "type": "object",
+      "required": ["code"],
+      "properties": {
+        "code": {
+          "type": "string",
+          "enum": [
+            "alcohol_applied",
+            "iodine_applied",
+            "toothpaste_applied",
+            "rinsed_with_water",
+            "cold_compress",
+            "scratch_burst"
+          ]
+        },
+        "at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
     }
   },
-  "additionalProperties": true
+  "allOf": [
+    {
+      "if": { "properties": { "event_type": { "const": "EXPOSURE_REPORTED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "exposure_case" },
+          "payload": {
+            "type": "object",
+            "required": ["reporter", "contact"],
+            "properties": {
+              "reporter": {
+                "type": "object",
+                "required": ["channel"],
+                "properties": {
+                  "channel": { "type": "string", "enum": ["hospital", "community_hotline", "resident_app", "cdc_forward"] },
+                  "reporter_ref": { "type": "string" }
+                },
+                "additionalProperties": false
+              },
+              "source_record_id": { "type": "string" },
+              "patient": {
+                "type": "object",
+                "properties": {
+                  "patient_ref": { "type": "string" },
+                  "display_name": { "type": "string" },
+                  "age_group": { "type": "string", "enum": ["infant", "child", "adult", "older_adult"] },
+                  "baseline_risks": { "type": "array", "items": { "type": "string" } }
+                },
+                "additionalProperties": false
+              },
+              "contact": {
+                "type": "object",
+                "required": ["occurred_at", "location"],
+                "properties": {
+                  "occurred_at": { "type": "string", "format": "date-time" },
+                  "location": { "$ref": "#/$defs/location" },
+                  "suspected_agent": { "type": "string" }
+                },
+                "additionalProperties": false
+              },
+              "image": { "$ref": "#/$defs/image" },
+              "note": { "type": "string" },
+              "case_id": { "type": "string" },
+              "link_tokens": { "type": "array", "items": { "type": "string" } },
+              "patient_ref": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "OBSERVATION_ADDED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "exposure_case" },
+          "payload": {
+            "type": "object",
+            "required": ["observed_at"],
+            "properties": {
+              "observed_at": { "type": "string", "format": "date-time" },
+              "findings": { "type": "array", "items": { "$ref": "#/$defs/finding" } },
+              "measures": { "type": "array", "items": { "$ref": "#/$defs/measure" } },
+              "evolution": { "type": "string", "enum": ["improving", "stable", "worsening"] },
+              "image": { "$ref": "#/$defs/image" },
+              "note": { "type": "string" },
+              "revises_observation_id": { "type": "string" },
+              "case_id": { "type": "string" },
+              "link_tokens": { "type": "array", "items": { "type": "string" } },
+              "patient_ref": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "GUIDANCE_ISSUED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "exposure_case" },
+          "payload": {
+            "type": "object",
+            "required": ["case_id", "level", "title", "actions", "triggered_items", "rule_versions", "as_of", "because_event_id", "disclaimer"],
+            "properties": {
+              "case_id": { "type": "string" },
+              "level": { "type": "string", "enum": ["clean", "observe", "seek_care"] },
+              "title": { "type": "string" },
+              "actions": { "type": "array", "items": { "type": "string" } },
+              "triggered_items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["rule_id", "rule_version", "reason_code", "detail", "escalates"],
+                  "properties": {
+                    "rule_id": { "type": "string" },
+                    "rule_version": { "type": "integer", "minimum": 1 },
+                    "reason_code": { "type": "string" },
+                    "detail": { "type": "string" },
+                    "escalates": { "type": "boolean" }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "rule_versions": { "type": "array", "items": { "type": "string" } },
+              "as_of": { "type": "string", "format": "date-time" },
+              "because_event_id": { "type": "string" },
+              "disclaimer": { "type": "string" },
+              "supersedes_event_ids": { "type": "array", "items": { "type": "string" } },
+              "clinical_care_in_progress": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "CASE_ESCALATED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "exposure_case" },
+          "payload": {
+            "type": "object",
+            "required": ["case_id", "reasons", "because_event_id", "escalated_at"],
+            "properties": {
+              "case_id": { "type": "string" },
+              "reasons": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+              "because_event_id": { "type": "string" },
+              "escalated_at": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "TREATMENT_RECORDED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "exposure_case" },
+          "payload": {
+            "type": "object",
+            "required": ["case_id", "institution_id", "treated_at", "disposition", "actions"],
+            "properties": {
+              "case_id": { "type": "string" },
+              "institution_id": { "type": "string" },
+              "institution_name": { "type": "string" },
+              "treated_at": { "type": "string", "format": "date-time" },
+              "disposition": {
+                "type": "string",
+                "enum": ["treated_discharged", "referred_urgent", "admitted", "resolved"]
+              },
+              "diagnosis_suspected": { "type": "string" },
+              "actions": { "type": "array", "items": { "type": "string" } },
+              "note": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "RULE_VETTED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "triage_rule" },
+          "payload": {
+            "type": "object",
+            "required": ["rule_id", "version", "vetted_by", "vetted_at"],
+            "properties": {
+              "rule_id": { "type": "string" },
+              "version": { "type": "integer", "minimum": 1 },
+              "vetted_by": { "type": "string" },
+              "vetted_at": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "LINKAGE_PROPOSED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "exposure_linkage" },
+          "payload": {
+            "type": "object",
+            "required": ["proposal_id", "candidate_seed_keys", "reason", "status"],
+            "properties": {
+              "proposal_id": { "type": "string" },
+              "candidate_seed_keys": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
+              "reason": { "type": "string" },
+              "status": { "const": "pending" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "LINKAGE_RESOLVED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "exposure_linkage" },
+          "payload": {
+            "type": "object",
+            "required": ["proposal_id", "decision", "resolved_by", "resolved_at"],
+            "properties": {
+              "proposal_id": { "type": "string" },
+              "decision": { "type": "string", "enum": ["merge", "reject"] },
+              "case_id": { "type": "string" },
+              "resolved_by": { "type": "string" },
+              "resolved_at": { "type": "string", "format": "date-time" }
+            },
+            "allOf": [
+              {
+                "if": { "properties": { "decision": { "const": "merge" } }, "required": ["decision"] },
+                "then": { "required": ["case_id"] }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "CLUSTER_ALERTED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "public_alert" },
+          "payload": {
+            "type": "object",
+            "required": [
+              "location_id",
+              "location_name",
+              "district",
+              "window_start",
+              "window_end",
+              "privacy_threshold",
+              "distinct_residents_band",
+              "sign_tags",
+              "issued_at"
+            ],
+            "properties": {
+              "location_id": { "type": "string" },
+              "location_name": { "type": "string" },
+              "district": { "type": "string" },
+              "window_start": { "type": "string", "format": "date-time" },
+              "window_end": { "type": "string", "format": "date-time" },
+              "privacy_threshold": { "type": "integer", "minimum": 2 },
+              "distinct_residents_band": { "type": "string" },
+              "sign_tags": { "type": "array", "items": { "type": "string" } },
+              "suspected_agent": { "type": "string" },
+              "issued_at": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    }
+  ]
 }

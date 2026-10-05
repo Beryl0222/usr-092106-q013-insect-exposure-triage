@@ -1,0 +1,336 @@
+[
+  {
+    "event_id": "guidance-case-7a4e457978fb-20261004-APP-7781-1a9259e10a0f",
+    "event_type": "GUIDANCE_ISSUED",
+    "aggregate_type": "exposure_case",
+    "aggregate_id": "case-7a4e457978fb",
+    "occurred_at": "2026-10-04T19:02:00+08:00",
+    "version": 1,
+    "summary": "自动分诊建议：立即冲洗去污，避免刺激",
+    "payload": {
+      "case_id": "case-7a4e457978fb",
+      "level": "clean",
+      "title": "立即冲洗去污，避免刺激",
+      "actions": [
+        "用流动清水或肥皂水轻柔冲洗接触部位至少 10 分钟，不要搓揉或拍压",
+        "不要涂抹酒精、碘酒、牙膏、酱油等刺激性物品",
+        "更换并单独清洗沾染衣物，避免虫体毒液继续接触皮肤",
+        "记录接触时间与地点，后续拍照在同一距离、同一光线下对比"
+      ],
+      "triggered_items": [
+        {
+          "rule_id": "R-CONTACT-CLEAN",
+          "rule_version": 1,
+          "reason_code": "contact_no_sign_yet",
+          "detail": "接触发生在 72 小时内，暂未记录皮损表现",
+          "escalates": false
+        }
+      ],
+      "rule_versions": [
+        "R-CONTACT-CLEAN@v1"
+      ],
+      "as_of": "2026-10-04T19:02:00+08:00",
+      "because_event_id": "20261004-APP-7781",
+      "disclaimer": "本建议由经审核的分诊规则自动生成，仅用于即时处置参考，不能替代医生面诊与诊断；如症状加重请立即就医。",
+      "clinical_care_in_progress": false
+    }
+  },
+  {
+    "event_id": "guidance-case-7a4e457978fb-20261004-HOTLINE-3320-a3792b53e1d1",
+    "event_type": "GUIDANCE_ISSUED",
+    "aggregate_type": "exposure_case",
+    "aggregate_id": "case-7a4e457978fb",
+    "occurred_at": "2026-10-04T21:00:00+08:00",
+    "version": 1,
+    "summary": "自动分诊建议：停止刺激性处理，继续观察",
+    "payload": {
+      "case_id": "case-7a4e457978fb",
+      "level": "observe",
+      "title": "停止刺激性处理，继续观察",
+      "actions": [
+        "立即停止涂抹酒精/碘酒/牙膏等刺激物，改用清水轻柔冲洗",
+        "保持创面清洁干燥，不要主动挑破水疱",
+        "若红斑范围扩大或出现水疱、渗液，尽快就医",
+        "清水冲洗后保持干燥，可冷敷缓解，不要搔抓或挑破",
+        "未来 24–48 小时观察红斑范围、颜色与是否出现水疱",
+        "如明显扩大、起疱、渗液或累及眼面/会阴，尽快就医"
+      ],
+      "triggered_items": [
+        {
+          "rule_id": "R-HARMFUL-MEASURE",
+          "rule_version": 1,
+          "reason_code": "harmful_self_measure",
+          "detail": "已采取刺激性处理：涂抹酒精",
+          "escalates": false
+        },
+        {
+          "rule_id": "R-MILD-LOCAL-SIGN",
+          "rule_version": 1,
+          "reason_code": "mild_local_erythema",
+          "detail": "局部小片红斑（约 8 平方厘米），无扩大趋势",
+          "escalates": false
+        }
+      ],
+      "rule_versions": [
+        "R-HARMFUL-MEASURE@v1",
+        "R-MILD-LOCAL-SIGN@v1"
+      ],
+      "as_of": "2026-10-04T21:00:00+08:00",
+      "because_event_id": "20261004-HOTLINE-3320",
+      "disclaimer": "本建议由经审核的分诊规则自动生成，仅用于即时处置参考，不能替代医生面诊与诊断；如症状加重请立即就医。",
+      "clinical_care_in_progress": false,
+      "supersedes_event_ids": [
+        "guidance-case-7a4e457978fb-20261004-APP-7781-1a9259e10a0f"
+      ]
+    }
+  },
+  {
+    "event_id": "guidance-case-7a4e457978fb-20261005-APP-7782-7a58d8fae214",
+    "event_type": "GUIDANCE_ISSUED",
+    "aggregate_type": "exposure_case",
+    "aggregate_id": "case-7a4e457978fb",
+    "occurred_at": "2026-10-05T07:30:00+08:00",
+    "version": 1,
+    "summary": "自动分诊建议：出现严重皮损，尽快就医",
+    "payload": {
+      "case_id": "case-7a4e457978fb",
+      "level": "seek_care",
+      "title": "出现严重皮损，尽快就医",
+      "actions": [
+        "立即停止涂抹酒精/碘酒/牙膏等刺激物，改用清水轻柔冲洗",
+        "保持创面清洁干燥，不要主动挑破水疱",
+        "若红斑范围扩大或出现水疱、渗液，尽快就医",
+        "请尽快前往最近医院急诊或皮肤科，不要自行挑破水疱或涂抹刺激物",
+        "就医时携带接触经过、既往照片与已使用物品清单",
+        "途中清水冲洗后以清洁敷料覆盖，避免摩擦"
+      ],
+      "triggered_items": [
+        {
+          "rule_id": "R-HARMFUL-MEASURE",
+          "rule_version": 1,
+          "reason_code": "harmful_self_measure",
+          "detail": "已采取刺激性处理：涂抹酒精",
+          "escalates": false
+        },
+        {
+          "rule_id": "R-SEVERE-SIGN",
+          "rule_version": 1,
+          "reason_code": "severe_skin_sign",
+          "detail": "已记录需要医生评估的表现：水疱、快速扩展",
+          "escalates": true
+        }
+      ],
+      "rule_versions": [
+        "R-HARMFUL-MEASURE@v1",
+        "R-SEVERE-SIGN@v1"
+      ],
+      "as_of": "2026-10-05T07:30:00+08:00",
+      "because_event_id": "20261005-APP-7782",
+      "disclaimer": "本建议由经审核的分诊规则自动生成，仅用于即时处置参考，不能替代医生面诊与诊断；如症状加重请立即就医。",
+      "clinical_care_in_progress": false,
+      "supersedes_event_ids": [
+        "guidance-case-7a4e457978fb-20261004-HOTLINE-3320-a3792b53e1d1"
+      ]
+    }
+  },
+  {
+    "event_id": "escalation-case-7a4e457978fb-20261005-APP-7782",
+    "event_type": "CASE_ESCALATED",
+    "aggregate_type": "exposure_case",
+    "aggregate_id": "case-7a4e457978fb",
+    "occurred_at": "2026-10-05T07:30:00+08:00",
+    "version": 1,
+    "summary": "出现需医生评估的表现，病例升级",
+    "payload": {
+      "case_id": "case-7a4e457978fb",
+      "reasons": [
+        "已记录需要医生评估的表现：水疱、快速扩展"
+      ],
+      "because_event_id": "20261005-APP-7782",
+      "escalated_at": "2026-10-05T07:30:00+08:00"
+    }
+  },
+  {
+    "event_id": "guidance-case-7a4e457978fb-20261005-ED-0091-72aa1958adbf",
+    "event_type": "GUIDANCE_ISSUED",
+    "aggregate_type": "exposure_case",
+    "aggregate_id": "case-7a4e457978fb",
+    "occurred_at": "2026-10-05T10:10:00+08:00",
+    "version": 1,
+    "summary": "自动分诊建议：出现严重皮损，尽快就医",
+    "payload": {
+      "case_id": "case-7a4e457978fb",
+      "level": "seek_care",
+      "title": "出现严重皮损，尽快就医",
+      "actions": [
+        "立即停止涂抹酒精/碘酒/牙膏等刺激物，改用清水轻柔冲洗",
+        "保持创面清洁干燥，不要主动挑破水疱",
+        "若红斑范围扩大或出现水疱、渗液，尽快就医",
+        "请尽快前往最近医院急诊或皮肤科，不要自行挑破水疱或涂抹刺激物",
+        "就医时携带接触经过、既往照片与已使用物品清单",
+        "途中清水冲洗后以清洁敷料覆盖，避免摩擦",
+        "该病例已有医疗机构接诊处置，请遵医嘱；若尚未在院请立即前往急诊"
+      ],
+      "triggered_items": [
+        {
+          "rule_id": "R-HARMFUL-MEASURE",
+          "rule_version": 1,
+          "reason_code": "harmful_self_measure",
+          "detail": "已采取刺激性处理：涂抹酒精",
+          "escalates": false
+        },
+        {
+          "rule_id": "R-SEVERE-SIGN",
+          "rule_version": 1,
+          "reason_code": "severe_skin_sign",
+          "detail": "已记录需要医生评估的表现：水疱、快速扩展",
+          "escalates": true
+        }
+      ],
+      "rule_versions": [
+        "R-HARMFUL-MEASURE@v1",
+        "R-SEVERE-SIGN@v1"
+      ],
+      "as_of": "2026-10-05T10:10:00+08:00",
+      "because_event_id": "20261005-ED-0091",
+      "disclaimer": "本建议由经审核的分诊规则自动生成，仅用于即时处置参考，不能替代医生面诊与诊断；如症状加重请立即就医。",
+      "clinical_care_in_progress": true,
+      "supersedes_event_ids": [
+        "guidance-case-7a4e457978fb-20261005-APP-7782-7a58d8fae214"
+      ]
+    }
+  },
+  {
+    "event_id": "guidance-case-1f07b1c439ed-20261004-ED-0417-1a9259e10a0f",
+    "event_type": "GUIDANCE_ISSUED",
+    "aggregate_type": "exposure_case",
+    "aggregate_id": "case-1f07b1c439ed",
+    "occurred_at": "2026-10-04T23:40:00+08:00",
+    "version": 1,
+    "summary": "自动分诊建议：立即冲洗去污，避免刺激",
+    "payload": {
+      "case_id": "case-1f07b1c439ed",
+      "level": "clean",
+      "title": "立即冲洗去污，避免刺激",
+      "actions": [
+        "用流动清水或肥皂水轻柔冲洗接触部位至少 10 分钟，不要搓揉或拍压",
+        "不要涂抹酒精、碘酒、牙膏、酱油等刺激性物品",
+        "更换并单独清洗沾染衣物，避免虫体毒液继续接触皮肤",
+        "记录接触时间与地点，后续拍照在同一距离、同一光线下对比"
+      ],
+      "triggered_items": [
+        {
+          "rule_id": "R-CONTACT-CLEAN",
+          "rule_version": 1,
+          "reason_code": "contact_no_sign_yet",
+          "detail": "接触发生在 72 小时内，暂未记录皮损表现",
+          "escalates": false
+        }
+      ],
+      "rule_versions": [
+        "R-CONTACT-CLEAN@v1"
+      ],
+      "as_of": "2026-10-04T23:40:00+08:00",
+      "because_event_id": "20261004-ED-0417",
+      "disclaimer": "本建议由经审核的分诊规则自动生成，仅用于即时处置参考，不能替代医生面诊与诊断；如症状加重请立即就医。",
+      "clinical_care_in_progress": false
+    }
+  },
+  {
+    "event_id": "guidance-case-9df723664cce-20261004-CDC-FWD-10-1a9259e10a0f",
+    "event_type": "GUIDANCE_ISSUED",
+    "aggregate_type": "exposure_case",
+    "aggregate_id": "case-9df723664cce",
+    "occurred_at": "2026-10-04T20:10:00+08:00",
+    "version": 1,
+    "summary": "自动分诊建议：立即冲洗去污，避免刺激",
+    "payload": {
+      "case_id": "case-9df723664cce",
+      "level": "clean",
+      "title": "立即冲洗去污，避免刺激",
+      "actions": [
+        "用流动清水或肥皂水轻柔冲洗接触部位至少 10 分钟，不要搓揉或拍压",
+        "不要涂抹酒精、碘酒、牙膏、酱油等刺激性物品",
+        "更换并单独清洗沾染衣物，避免虫体毒液继续接触皮肤",
+        "记录接触时间与地点，后续拍照在同一距离、同一光线下对比"
+      ],
+      "triggered_items": [
+        {
+          "rule_id": "R-CONTACT-CLEAN",
+          "rule_version": 1,
+          "reason_code": "contact_no_sign_yet",
+          "detail": "接触发生在 72 小时内，暂未记录皮损表现",
+          "escalates": false
+        }
+      ],
+      "rule_versions": [
+        "R-CONTACT-CLEAN@v1"
+      ],
+      "as_of": "2026-10-04T20:10:00+08:00",
+      "because_event_id": "20261004-CDC-FWD-10",
+      "disclaimer": "本建议由经审核的分诊规则自动生成，仅用于即时处置参考，不能替代医生面诊与诊断；如症状加重请立即就医。",
+      "clinical_care_in_progress": false
+    }
+  },
+  {
+    "event_id": "guidance-case-f229c7a97117-20261004-CDC-FWD-11-1a9259e10a0f",
+    "event_type": "GUIDANCE_ISSUED",
+    "aggregate_type": "exposure_case",
+    "aggregate_id": "case-f229c7a97117",
+    "occurred_at": "2026-10-04T20:11:00+08:00",
+    "version": 1,
+    "summary": "自动分诊建议：立即冲洗去污，避免刺激",
+    "payload": {
+      "case_id": "case-f229c7a97117",
+      "level": "clean",
+      "title": "立即冲洗去污，避免刺激",
+      "actions": [
+        "用流动清水或肥皂水轻柔冲洗接触部位至少 10 分钟，不要搓揉或拍压",
+        "不要涂抹酒精、碘酒、牙膏、酱油等刺激性物品",
+        "更换并单独清洗沾染衣物，避免虫体毒液继续接触皮肤",
+        "记录接触时间与地点，后续拍照在同一距离、同一光线下对比"
+      ],
+      "triggered_items": [
+        {
+          "rule_id": "R-CONTACT-CLEAN",
+          "rule_version": 1,
+          "reason_code": "contact_no_sign_yet",
+          "detail": "接触发生在 72 小时内，暂未记录皮损表现",
+          "escalates": false
+        }
+      ],
+      "rule_versions": [
+        "R-CONTACT-CLEAN@v1"
+      ],
+      "as_of": "2026-10-04T20:11:00+08:00",
+      "because_event_id": "20261004-CDC-FWD-11",
+      "disclaimer": "本建议由经审核的分诊规则自动生成，仅用于即时处置参考，不能替代医生面诊与诊断；如症状加重请立即就医。",
+      "clinical_care_in_progress": false
+    }
+  },
+  {
+    "event_id": "alert-L-XFLD-01-1791072000000-39e9ff2e4519",
+    "event_type": "CLUSTER_ALERTED",
+    "aggregate_type": "public_alert",
+    "aggregate_id": "public-alert-L-XFLD-01",
+    "occurred_at": "2026-10-05T02:20:00.000Z",
+    "version": 1,
+    "summary": "新城区 幸福林带健身区 附近隐翅虫暴露聚集提示",
+    "payload": {
+      "location_id": "L-XFLD-01",
+      "location_name": "幸福林带健身区",
+      "district": "新城区",
+      "window_start": "2026-10-04T00:00:00.000Z",
+      "window_end": "2026-10-07T00:00:00.000Z",
+      "privacy_threshold": 3,
+      "distinct_residents_band": "3-4",
+      "sign_tags": [
+        "快速扩展",
+        "水疱",
+        "红斑"
+      ],
+      "suspected_agent": "隐翅虫",
+      "issued_at": "2026-10-05T02:20:00.000Z"
+    }
+  }
+]

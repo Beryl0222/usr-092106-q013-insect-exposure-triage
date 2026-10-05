@@ -1,0 +1,291 @@
+{
+  "resident": {
+    "case_id": "case-7a4e457978fb",
+    "current_guidance": {
+      "level": "seek_care",
+      "title": "出现严重皮损，尽快就医",
+      "actions": [
+        "立即停止涂抹酒精/碘酒/牙膏等刺激物，改用清水轻柔冲洗",
+        "保持创面清洁干燥，不要主动挑破水疱",
+        "若红斑范围扩大或出现水疱、渗液，尽快就医",
+        "请尽快前往最近医院急诊或皮肤科，不要自行挑破水疱或涂抹刺激物",
+        "就医时携带接触经过、既往照片与已使用物品清单",
+        "途中清水冲洗后以清洁敷料覆盖，避免摩擦",
+        "该病例已有医疗机构接诊处置，请遵医嘱；若尚未在院请立即前往急诊"
+      ],
+      "triggered_items": [
+        {
+          "rule_id": "R-HARMFUL-MEASURE",
+          "rule_version": 1,
+          "reason_code": "harmful_self_measure",
+          "detail": "已采取刺激性处理：涂抹酒精",
+          "escalates": false
+        },
+        {
+          "rule_id": "R-SEVERE-SIGN",
+          "rule_version": 1,
+          "reason_code": "severe_skin_sign",
+          "detail": "已记录需要医生评估的表现：水疱、快速扩展",
+          "escalates": true
+        }
+      ],
+      "as_of": "2026-10-05T10:10:00+08:00",
+      "disclaimer": "本建议由经审核的分诊规则自动生成，仅用于即时处置参考，不能替代医生面诊与诊断；如症状加重请立即就医。",
+      "clinical_care_in_progress": true
+    },
+    "history": [
+      {
+        "level": "clean",
+        "title": "立即冲洗去污，避免刺激",
+        "as_of": "2026-10-04T19:02:00+08:00",
+        "because_event_id": "20261004-APP-7781"
+      },
+      {
+        "level": "observe",
+        "title": "停止刺激性处理，继续观察",
+        "as_of": "2026-10-04T21:00:00+08:00",
+        "because_event_id": "20261004-HOTLINE-3320"
+      },
+      {
+        "level": "seek_care",
+        "title": "出现严重皮损，尽快就医",
+        "as_of": "2026-10-05T07:30:00+08:00",
+        "because_event_id": "20261005-APP-7782"
+      },
+      {
+        "level": "seek_care",
+        "title": "出现严重皮损，尽快就医",
+        "as_of": "2026-10-05T10:10:00+08:00",
+        "because_event_id": "20261005-ED-0091"
+      }
+    ]
+  },
+  "clinician": {
+    "case_id": "case-7a4e457978fb",
+    "escalated": true,
+    "contact": {
+      "occurred_at": "2026-10-04T18:20:00+08:00",
+      "location": "幸福林带健身区",
+      "district": "新城区",
+      "suspected_agent": "隐翅虫"
+    },
+    "patient": {
+      "age_group": "child",
+      "baseline_risks": []
+    },
+    "timeline": [
+      {
+        "at": "2026-10-04T19:02:00+08:00",
+        "kind": "exposure_reported",
+        "channel": "resident_app",
+        "image": null,
+        "note": "孩子在健身器材附近拍落过一只橘黑相间小虫"
+      },
+      {
+        "at": "2026-10-04T21:00:00+08:00",
+        "kind": "observation_added",
+        "findings": [
+          {
+            "code": "erythema",
+            "label": "红斑",
+            "severity": "mild",
+            "area_cm2": 8,
+            "spreading": false
+          }
+        ],
+        "measures": [
+          "alcohol_applied"
+        ],
+        "evolution": "stable",
+        "image": {
+          "image_ref": "obj://images/2026/10/04/55120-01",
+          "consent_scope": "clinical",
+          "granted_at": "2026-10-04T21:05:00+08:00"
+        },
+        "note": "家长咨询能否继续涂酒精"
+      },
+      {
+        "at": "2026-10-05T07:30:00+08:00",
+        "kind": "observation_added",
+        "findings": [
+          {
+            "code": "blister",
+            "label": "水疱",
+            "severity": "severe",
+            "area_cm2": null,
+            "spreading": false
+          },
+          {
+            "code": "rapid_spread",
+            "label": "快速扩展",
+            "severity": "severe",
+            "area_cm2": null,
+            "spreading": true
+          }
+        ],
+        "measures": [],
+        "evolution": "worsening",
+        "image": null,
+        "note": null
+      },
+      {
+        "at": "2026-10-05T10:05:00+08:00",
+        "kind": "treatment_recorded",
+        "institution_id": "H-XACHILD",
+        "institution_name": "西安市儿童医院急诊",
+        "disposition": "admitted",
+        "diagnosis_suspected": "隐翅虫皮炎（条索状水疱性皮炎）",
+        "actions": [
+          "创面清洁护理",
+          "收住皮肤科观察"
+        ]
+      }
+    ],
+    "current_guidance": {
+      "level": "seek_care",
+      "triggered_items": [
+        {
+          "rule_id": "R-HARMFUL-MEASURE",
+          "rule_version": 1,
+          "reason_code": "harmful_self_measure",
+          "detail": "已采取刺激性处理：涂抹酒精",
+          "escalates": false
+        },
+        {
+          "rule_id": "R-SEVERE-SIGN",
+          "rule_version": 1,
+          "reason_code": "severe_skin_sign",
+          "detail": "已记录需要医生评估的表现：水疱、快速扩展",
+          "escalates": true
+        }
+      ],
+      "as_of": "2026-10-05T10:10:00+08:00"
+    }
+  },
+  "cdc": {
+    "privacy_threshold": 3,
+    "cluster_alerts": [
+      {
+        "location_id": "L-XFLD-01",
+        "location_name": "幸福林带健身区",
+        "district": "新城区",
+        "window_start": "2026-10-04T00:00:00.000Z",
+        "window_end": "2026-10-07T00:00:00.000Z",
+        "privacy_threshold": 3,
+        "distinct_residents_band": "3-4",
+        "sign_tags": [
+          "快速扩展",
+          "水疱",
+          "红斑"
+        ],
+        "suspected_agent": "隐翅虫",
+        "issued_at": "2026-10-05T02:20:00.000Z"
+      }
+    ]
+  },
+  "notifications": [
+    {
+      "key": "gnotify|case-7a4e457978fb|#1|fc29545a94aa",
+      "type": "GUIDANCE_ISSUED",
+      "case_id": "case-7a4e457978fb",
+      "level": "clean",
+      "as_of": "2026-10-04T19:02:00+08:00",
+      "guidance_event_ids": [
+        "guidance-case-7a4e457978fb-20261004-APP-7781-1a9259e10a0f"
+      ],
+      "supersedes": null,
+      "issued_at": "2026-10-05T02:20:00.000Z",
+      "status": "superseded",
+      "superseded_by": "gnotify|case-7a4e457978fb|#2|78e7cbc6adca"
+    },
+    {
+      "key": "gnotify|case-7a4e457978fb|#2|78e7cbc6adca",
+      "type": "GUIDANCE_ISSUED",
+      "case_id": "case-7a4e457978fb",
+      "level": "observe",
+      "as_of": "2026-10-04T21:00:00+08:00",
+      "guidance_event_ids": [
+        "guidance-case-7a4e457978fb-20261004-HOTLINE-3320-a3792b53e1d1"
+      ],
+      "supersedes": "gnotify|case-7a4e457978fb|#1|fc29545a94aa",
+      "issued_at": "2026-10-05T02:20:00.000Z",
+      "status": "superseded",
+      "superseded_by": "gnotify|case-7a4e457978fb|#3|e80becce5c36"
+    },
+    {
+      "key": "gnotify|case-7a4e457978fb|#3|e80becce5c36",
+      "type": "GUIDANCE_ISSUED",
+      "case_id": "case-7a4e457978fb",
+      "level": "seek_care",
+      "as_of": "2026-10-05T07:30:00+08:00",
+      "guidance_event_ids": [
+        "guidance-case-7a4e457978fb-20261005-APP-7782-7a58d8fae214"
+      ],
+      "supersedes": "gnotify|case-7a4e457978fb|#2|78e7cbc6adca",
+      "issued_at": "2026-10-05T02:20:00.000Z",
+      "status": "superseded",
+      "superseded_by": "gnotify|case-7a4e457978fb|#4|494b0e99e649"
+    },
+    {
+      "key": "gnotify|case-7a4e457978fb|#4|494b0e99e649",
+      "type": "GUIDANCE_ISSUED",
+      "case_id": "case-7a4e457978fb",
+      "level": "seek_care",
+      "as_of": "2026-10-05T10:10:00+08:00",
+      "guidance_event_ids": [
+        "guidance-case-7a4e457978fb-20261005-ED-0091-72aa1958adbf"
+      ],
+      "supersedes": "gnotify|case-7a4e457978fb|#3|e80becce5c36",
+      "issued_at": "2026-10-05T02:20:00.000Z",
+      "status": "current"
+    },
+    {
+      "key": "gnotify|case-1f07b1c439ed|#1|fc29545a94aa",
+      "type": "GUIDANCE_ISSUED",
+      "case_id": "case-1f07b1c439ed",
+      "level": "clean",
+      "as_of": "2026-10-04T23:40:00+08:00",
+      "guidance_event_ids": [
+        "guidance-case-1f07b1c439ed-20261004-ED-0417-1a9259e10a0f"
+      ],
+      "supersedes": null,
+      "issued_at": "2026-10-05T02:20:00.000Z",
+      "status": "current"
+    },
+    {
+      "key": "gnotify|case-9df723664cce|#1|fc29545a94aa",
+      "type": "GUIDANCE_ISSUED",
+      "case_id": "case-9df723664cce",
+      "level": "clean",
+      "as_of": "2026-10-04T20:10:00+08:00",
+      "guidance_event_ids": [
+        "guidance-case-9df723664cce-20261004-CDC-FWD-10-1a9259e10a0f"
+      ],
+      "supersedes": null,
+      "issued_at": "2026-10-05T02:20:00.000Z",
+      "status": "current"
+    },
+    {
+      "key": "gnotify|case-f229c7a97117|#1|fc29545a94aa",
+      "type": "GUIDANCE_ISSUED",
+      "case_id": "case-f229c7a97117",
+      "level": "clean",
+      "as_of": "2026-10-04T20:11:00+08:00",
+      "guidance_event_ids": [
+        "guidance-case-f229c7a97117-20261004-CDC-FWD-11-1a9259e10a0f"
+      ],
+      "supersedes": null,
+      "issued_at": "2026-10-05T02:20:00.000Z",
+      "status": "current"
+    },
+    {
+      "key": "anotify|L-XFLD-01|2026-10-04T00:00:00.000Z|ae331b5b1c18",
+      "type": "CLUSTER_ALERTED",
+      "location_id": "L-XFLD-01",
+      "alert_event_id": "alert-L-XFLD-01-1791072000000-39e9ff2e4519",
+      "issued_at": "2026-10-05T02:20:00.000Z",
+      "status": "current",
+      "supersedes": null
+    }
+  ]
+}
